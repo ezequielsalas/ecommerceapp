@@ -64,15 +64,30 @@
 }
 
 .shopping-panel{
-  text-align:center;
+  /* text-align:center;*/
   border: solid 1px #ccc;
   height:250px;
   width:220px;
   margin-right: 10px;
-  background-color: '#ccc0';
   margin-top: 20px;
-    margin-left: auto;
-    position: relative;
+  margin-left: auto;
+  position: relative;
+}
+.shopping-panel header{
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px;
+}
+
+.shopping-panel section strong{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: auto;
+
+}
+.shopping-panel section {
+  display: flex;
+  margin: 10px;
 }
 .container-list {
   display: flex; /* or inline-flex */
@@ -97,9 +112,6 @@
   width:200px;
 }
 
-.shopping-panel header{
-  background-color: pink;
-}
 
 .shopping-panel footer{
   position: absolute;

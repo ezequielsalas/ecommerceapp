@@ -20,8 +20,14 @@ const ShopingCar =(props) =>{
   return(
   <div className='shopping-panel'>
   <header>
-    I'm the header
+    Order summary
   </header>
+  <hr/>
+  
+  <section>
+    Item quantity <strong>{5+3}</strong>
+  </section>
+  
   <div className="article-selected">
     <article>
       1
@@ -38,7 +44,7 @@ const ShopingCar =(props) =>{
   </div>
 
   <footer>
-    I'm a footer
+    <button className="center">Checkout</button>
   </footer>
   </div>
   );
