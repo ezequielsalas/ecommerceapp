@@ -3,17 +3,27 @@ import logo from './logo.svg';
 import './App.css';
 
 
-const Article =(props) =>{
-  return(
+class Article extends Component{
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit = ()=>{
+
+    this.props.selectArticle({'name':this.props.name,'price':this.props.price});
+  }
+
+  render(){return(
   <div className='product-card'>
   
-  <img src={props.img} />
-  <h2>{props.name}</h2>
-  <h2>${props.price}</h2>
-  <button className="center">Buy</button>
+  <img src={this.props.img} />
+  <h2>{this.props.name}</h2>
+  <h2>${this.props.price}</h2>
+  <button className="center" onClick={this.handleSubmit}>Buy</button>
   
   </div>
-  );
+  )};
 }
 
 const ShopingCar =(props) =>{
@@ -25,26 +35,17 @@ const ShopingCar =(props) =>{
   <hr/>
   
   <section>
-    Item quantity <strong>{5+3}</strong>
+    Item quantity <strong>{props.articlesSelected.length}</strong>
   </section>
   
   <div className="article-selected">
-    <article>
-      1
-    </article>
-    
-    <article>
-      2
-    </article>
-    
-    <article>
-      3
-    </article>
-    
+
+  {props.articlesSelected.map(articleSelected =>( <article> {articleSelected.name} </article>))}
+   
   </div>
 
   <footer>
-    <button className="center">Checkout</button>
+    <button className="center" >Checkout</button>
   </footer>
   </div>
   );
@@ -55,8 +56,7 @@ const ArticleList = (props) =>{
   return (
     <div className="container-list">
 
-    {props.articles.map(article => (<Article name={article.name} price={article.price} img={article.img}/>)
-                        )}
+    {props.articles.map(article => (<Article name={article.name} selectArticle={props.selectArticle} price={article.price} img={article.img}/>))}
      
     </div>
     );
@@ -65,11 +65,19 @@ const ArticleList = (props) =>{
 class App extends Component{
   constructor(props) {
     super(props);
-    //this.state = { articles: [] };
+    this.state = { articlesSelected: [] };
     this.articles = [{"name":"SmartPhone","price":700, "img":"https://d3d71ba2asa5oz.cloudfront.net/12015576/images/iphone%207%20plus%20gold%20generic%20front_41117.jpg"}
     ,{"name":"Tesla Roadster","price":40000, "img":"https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/media/assets/submodel/8616.jpg"}
     ,{"name":"Laptop","price":3000, "img":"https://assets.pcmag.com/media/images/339392-apple-macbook-pro-15-inch-2013.jpg?width=1000&height=758"}
     ];
+
+    this.selectArticle = this.selectArticle.bind(this);
+  }
+
+  selectArticle = (article) =>{
+    this.setState(prevState => ({
+      articlesSelected: prevState.articlesSelected.concat(article)
+    }));
   }
 
   render(){
@@ -81,8 +89,8 @@ class App extends Component{
         <li><a href="#">Contact</a></li>
       </ul>
       <div className="container">
-      <ArticleList articles={this.articles} />
-      <ShopingCar />
+      <ArticleList articles={this.articles} selectArticle={this.selectArticle}/>
+      <ShopingCar articlesSelected={this.state.articlesSelected}/>
       </div>
      </div>
       );

@@ -122,10 +122,13 @@
 }
 
 .shopping-panel article{
-  background-color: gray;
+  /*background-color: gray;*/
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .article-selected{
   overflow-y: auto;
-  height: 220px;
+  height: 120px;
 }
