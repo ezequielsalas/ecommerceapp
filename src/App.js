@@ -10,19 +10,18 @@ class Article extends Component{
   }
 
   handleSubmit = ()=>{
-
     this.props.selectArticle({'name':this.props.name,'price':this.props.price});
   }
 
   render(){return(
-  <div className='product-card'>
-  
-  <img src={this.props.img} />
-  <h2>{this.props.name}</h2>
-  <h2>${this.props.price}</h2>
-  <button className="center" onClick={this.handleSubmit}>Buy</button>
-  
-  </div>
+    <div className='product-card'>
+    
+    <img src={this.props.img} />
+    <h2>{this.props.name}</h2>
+    <h2>${this.props.price}</h2>
+    <button className="center" onClick={this.handleSubmit}>Buy</button>
+    
+    </div>
   )};
 }
 
@@ -75,6 +74,11 @@ class App extends Component{
   }
 
   selectArticle = (article) =>{
+    const articleFound = this.state.articlesSelected.filter(art => art.name === article.name);
+    if (articleFound.length){
+      return;
+    }
+
     this.setState(prevState => ({
       articlesSelected: prevState.articlesSelected.concat(article)
     }));
