@@ -85,6 +85,15 @@
   margin-left: auto;
 
 }
+.shopping-panel article {
+  display: flex;
+  margin: 5px;
+}
+.btn-delete{
+  margin-left: auto;
+  font-weight: bold;
+  color: red;
+}
 .shopping-panel section {
   display: flex;
   margin: 10px;

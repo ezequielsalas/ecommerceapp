@@ -25,8 +25,14 @@ class Article extends Component{
   )};
 }
 
-const ShopingCar =(props) =>{
-  return(
+class ShopingCar extends Component{
+  constructor(props){
+    super(props);
+  }
+
+ 
+  render() {
+    return(
   <div className='shopping-panel'>
   <header>
     Order summary
@@ -34,12 +40,12 @@ const ShopingCar =(props) =>{
   <hr/>
   
   <section>
-    Item quantity <strong>{props.articlesSelected.length}</strong>
+    Item quantity <strong>{this.props.articlesSelected.length}</strong>
   </section>
   
   <div className="article-selected">
 
-  {props.articlesSelected.map(articleSelected =>( <article> {articleSelected.name} </article>))}
+  {this.props.articlesSelected.map((articleSelected,index) =>( <article key={index}> {articleSelected.name} <button className="btn-delete" onClick={()=>this.props.removeArticle(articleSelected.name)}>X</button> </article>))}
    
   </div>
 
@@ -48,6 +54,7 @@ const ShopingCar =(props) =>{
   </footer>
   </div>
   );
+  }
 }
 
 
@@ -55,7 +62,7 @@ const ArticleList = (props) =>{
   return (
     <div className="container-list">
 
-    {props.articles.map(article => (<Article name={article.name} selectArticle={props.selectArticle} price={article.price} img={article.img}/>))}
+    {props.articles.map((article, index) => (<Article key={index} name={article.name} selectArticle={props.selectArticle} price={article.price} img={article.img}/>))}
      
     </div>
     );
@@ -84,17 +91,23 @@ class App extends Component{
     }));
   }
 
+  removeArticle =(articleName)=>{
+    const list = this.state.articlesSelected.filter(art => art.name != articleName);
+     this.setState(prevState => ({
+      articlesSelected: list
+    }));
+  }
+
   render(){
     return (
      <div>
        <ul className="navigation">
-  
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <div className="container">
       <ArticleList articles={this.articles} selectArticle={this.selectArticle}/>
-      <ShopingCar articlesSelected={this.state.articlesSelected}/>
+      <ShopingCar articlesSelected={this.state.articlesSelected} removeArticle={this.removeArticle}/>
       </div>
      </div>
       );
