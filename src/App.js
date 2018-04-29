@@ -23,6 +23,8 @@ class App extends Component{
     }));
   }
 
+
+  //TODO: change this to redux
   removeArticle =(articleName)=>{
     const list = this.state.articlesSelected.filter(art => art.name !== articleName);
      this.setState(prevState => ({
@@ -31,10 +33,7 @@ class App extends Component{
   }
 
   addArticle =(article)=>{
-    const articleFound = this.state.articles.filter(art => art.name === article.name);
-    if (articleFound.length){
-      return;
-    }
+    
 
     this.setState(prevState => ({
       articles: prevState.articles.concat(article)

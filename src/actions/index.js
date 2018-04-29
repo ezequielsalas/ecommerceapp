@@ -1,4 +1,4 @@
-import { ADD_ARTICLE,SELECTED_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE,SELECTED_ARTICLE,DELETE_ARTICLE } from "../constants/action-types";
 
 export const addArticle = article => {
 	console.log("inside");
@@ -13,3 +13,4 @@ export const addArticle = article => {
 
 };
 export const selectArticle = article => ({ type: SELECTED_ARTICLE , payload: article });
+
