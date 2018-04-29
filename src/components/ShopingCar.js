@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
+
+import { connect } from "react-redux";
+
+
+const mapStateToProps = state => {
+  return { articlesSelected: state.articlesSelected };
+};
+
 class ShopingCar extends Component{
   
   render() {
@@ -28,4 +36,7 @@ class ShopingCar extends Component{
   }
 }
 
-export default ShopingCar;
+
+
+const VisibleShoping = connect(mapStateToProps)(ShopingCar);
+export default VisibleShoping;

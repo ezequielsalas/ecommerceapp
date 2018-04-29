@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { connect } from "react-redux";
+import {selectArticle} from "../actions/index";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    selectArticle: article => dispatch(selectArticle(article))
+  };
+};
 
 class Article extends Component{
   constructor(props) {
@@ -23,4 +31,6 @@ class Article extends Component{
   )};
 }
 
-export default Article;
+
+const VisibleArticle = connect(null, mapDispatchToProps)(Article);
+export default VisibleArticle;

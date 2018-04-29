@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import '../App.css';
+import {addArticle} from "../actions/index";
+import { connect } from "react-redux";
 
+
+const mapStateToProps = state =>{
+  return { articles: state.articles };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    addArticle: article => dispatch(addArticle(article))
+  };
+};
 class ArticleForm extends Component{
   constructor(props) {
     super(props);
@@ -39,4 +50,6 @@ class ArticleForm extends Component{
   )};
 }
 
-export default ArticleForm;
+
+const VisibleArticleForm = connect(mapStateToProps, mapDispatchToProps)(ArticleForm);
+export default VisibleArticleForm;

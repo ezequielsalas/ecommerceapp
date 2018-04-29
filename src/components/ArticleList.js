@@ -3,6 +3,13 @@ import '../App.css';
 import Article from './Article';
 import ArticleForm from './ArticleForm'
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+
+
+const mapStateToProps = state => {
+  return { articles: state.articles };
+};
+
 class ArticleList extends Component{
 	constructor(props){
 		super(props);
@@ -20,13 +27,13 @@ class ArticleList extends Component{
 	
 	handleAdd =()=>{
 		this.setState({
-			form:<ArticleForm clear={this.clear} addArticle={this.props.addArticle}/>
+			form:<ArticleForm clear={this.clear} />
 		});
 	}
   render(){return (
     <div className="container-list">
 
-    {this.props.articles.map((article, index) => (<Article key={index} name={article.name} selectArticle={this.props.selectArticle} price={article.price} img={article.img}/> ))}
+    {this.props.articles.map((article, index) => (<Article key={index} name={article.name}  price={article.price} img={article.img}/> ))}
     {this.state.form}
     <button className="btn-add" onClick={this.handleAdd}>+</button>
      
@@ -35,4 +42,6 @@ class ArticleList extends Component{
 }
 }
 
-export default ArticleList;
+
+const VisibleArticleList = connect(mapStateToProps)(ArticleList);
+export default VisibleArticleList;

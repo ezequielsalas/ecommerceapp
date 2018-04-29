@@ -6,11 +6,7 @@ import ShopingCar from './components/ShopingCar'
 class App extends Component{
   constructor(props) {
     super(props);
-    this.state = { articlesSelected: [] 
-    ,articles : [{"name":"SmartPhone","price":700, "img":"https://d3d71ba2asa5oz.cloudfront.net/12015576/images/iphone%207%20plus%20gold%20generic%20front_41117.jpg"}
-    ,{"name":"Tesla Roadster","price":40000, "img":"https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/media/assets/submodel/8616.jpg"}
-    ,{"name":"Laptop","price":3000, "img":"https://assets.pcmag.com/media/images/339392-apple-macbook-pro-15-inch-2013.jpg?width=1000&height=758"}
-    ]}
+    
 
     this.selectArticle = this.selectArticle.bind(this);
     this.addArticle = this.addArticle.bind(this);
@@ -35,7 +31,7 @@ class App extends Component{
   }
 
   addArticle =(article)=>{
-      const articleFound = this.state.articles.filter(art => art.name === article.name);
+    const articleFound = this.state.articles.filter(art => art.name === article.name);
     if (articleFound.length){
       return;
     }
@@ -53,12 +49,13 @@ class App extends Component{
         <li><a href="#"></a></li>
       </ul>
       <div className="container">
-      <ArticleList articles={this.state.articles} selectArticle={this.selectArticle} addArticle={this.addArticle}/>
-      <ShopingCar articlesSelected={this.state.articlesSelected} removeArticle={this.removeArticle}/>
+      <ArticleList  />
+      <ShopingCar removeArticle={this.removeArticle}/>
       </div>
      </div>
       );
   }
 };
 
+/*<ArticleList articles={this.state.articles} selectArticle={this.selectArticle} addArticle={this.addArticle}/>*/
 export default App;
