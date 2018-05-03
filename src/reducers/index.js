@@ -1,4 +1,4 @@
-import { ADD_ARTICLE,SELECTED_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE,SELECTED_ARTICLE,DELETE_ARTICLE } from "../constants/action-types";
 
 
 const initialState = {
@@ -15,6 +15,8 @@ const rootReducer = (state = initialState, action) => {
 	       return { ...state, articles: state.articles.concat(action.payload) };
 	    case SELECTED_ARTICLE:
 	       return { ...state, articlesSelected: state.articlesSelected.concat(action.payload) };
+	    case DELETE_ARTICLE:
+	       return { ...state, articlesSelected: state.articlesSelected.filter(art => art.name !== action.payload) };
 	    default:
 	      return state;
   	}

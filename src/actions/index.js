@@ -14,3 +14,7 @@ export const addArticle = article => {
 };
 export const selectArticle = article => ({ type: SELECTED_ARTICLE , payload: article });
 
+export const deleteArticle = articleName => ({ type: DELETE_ARTICLE , payload: articleName });
+
+
+

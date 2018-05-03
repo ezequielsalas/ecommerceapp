@@ -49,7 +49,7 @@ class App extends Component{
       </ul>
       <div className="container">
       <ArticleList  />
-      <ShopingCar removeArticle={this.removeArticle}/>
+      <ShopingCar />
       </div>
      </div>
       );

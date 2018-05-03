@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import '../App.css';
 
 import { connect } from "react-redux";
+import {deleteArticle} from "../actions/index";
 
 
 const mapStateToProps = state => {
   return { articlesSelected: state.articlesSelected };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteArticle: article => dispatch(deleteArticle(article))
+  };
 };
 
 class ShopingCar extends Component{
@@ -24,7 +31,7 @@ class ShopingCar extends Component{
   
   <div className="article-selected">
 
-  {this.props.articlesSelected.map((articleSelected,index) =>( <article key={index}> {articleSelected.name} <button className="btn-delete" onClick={()=>this.props.removeArticle(articleSelected.name)}>X</button> </article>))}
+  {this.props.articlesSelected.map((articleSelected,index) =>( <article key={index}> {articleSelected.name} <button className="btn-delete" onClick={()=>this.props.deleteArticle(articleSelected.name)}>X</button> </article>))}
    
   </div>
 
@@ -38,5 +45,5 @@ class ShopingCar extends Component{
 
 
 
-const VisibleShoping = connect(mapStateToProps)(ShopingCar);
+const VisibleShoping = connect(mapStateToProps,mapDispatchToProps)(ShopingCar);
 export default VisibleShoping;
