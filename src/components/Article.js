@@ -9,6 +9,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => {
+  return { articlesSelected: state.articlesSelected };
+};
+
+
 class Article extends Component{
   constructor(props) {
     super(props);
@@ -16,6 +21,10 @@ class Article extends Component{
   }
 
   handleSubmit = ()=>{
+     const articleFound = this.props.articlesSelected.filter(art => art.name === this.props.name);
+    if (articleFound.length){
+      return;
+    }
     this.props.selectArticle({'name':this.props.name,'price':this.props.price});
   }
 
@@ -32,5 +41,5 @@ class Article extends Component{
 }
 
 
-const VisibleArticle = connect(null, mapDispatchToProps)(Article);
+const VisibleArticle = connect(mapStateToProps, mapDispatchToProps)(Article);
 export default VisibleArticle;
